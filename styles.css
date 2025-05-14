@@ -1,0 +1,99 @@
+/* Base Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; min-height:100%; background:#0b0c0e; color:#ecebe8; font-family:'Roboto Slab', serif; }
+
+/* Overlays */
+.overlay {
+  pointer-events: none;
+  position: fixed; inset:0; z-index:999;
+}
+.noise {
+  background: url('static_noise_small.png') repeat;
+  opacity: 0.04;
+}
+.scanlines {
+  background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.08) 50%) repeat-y;
+  background-size: 100% 3px;
+  opacity: 0.2;
+}
+
+/* Header */
+header {
+  text-align:center; padding:2rem 1rem;
+  border-bottom:1px solid rgba(236,235,232,0.1);
+  animation: flicker 8s infinite;
+}
+header h1 {
+  font-family:'IM Fell DW Pica', serif;
+  font-size:2.8rem; color:#a8b0b8;
+}
+header .subtitle {
+  margin-top:0.5rem; font-style:italic; color:rgba(236,235,232,0.7);
+}
+
+/* Flicker */
+@keyframes flicker {
+  0%,20%,40%,70%,100% {opacity:1;}
+ 10%,30%,50%,60% {opacity:0.85;}
+}
+
+/* Entries */
+main {
+  max-width:700px; margin:2rem auto; padding:0 1rem;
+}
+.entry {
+  margin-bottom:2rem; padding:1.5rem;
+  background:rgba(11,12,14,0.7); border-left:4px solid #a8b0b8;
+  position:relative; overflow:hidden;
+}
+.entry h2 {
+  margin-bottom:1rem; font-size:1.6rem; color:#a8b0b8;
+  cursor: default;
+}
+.entry p {
+  margin-bottom:0.8rem; line-height:1.6; text-indent:1rem;
+}
+
+/* Redaction */
+.redacted {
+  background:#0b0c0e; color:#0b0c0e; cursor:pointer;
+  transition: background 0.4s ease;
+  display:inline-block;
+}
+.redacted:hover {
+  background:#c73a3a; color:#ecebe8;
+}
+
+/* Reveal Content */
+.reveal {
+  display:none; color:#c73a3a; font-family:monospace;
+  animation: reveal-glow 1.2s infinite alternate;
+}
+.redacted:hover + .reveal {
+  display:block;
+}
+
+@keyframes reveal-glow {
+  from { text-shadow:0 0 4px #c73a3a; }
+  to   { text-shadow:0 0 12px #c73a3a; }
+}
+
+/* Footer */
+.footer-note {
+  text-align:center; font-size:0.9rem; font-weight:300;
+  color:rgba(236,235,232,0.6); margin-bottom:2rem;
+}
+footer {
+  text-align:center; padding:1rem; border-top:1px solid rgba(236,235,232,0.1);
+  font-size:0.85rem; color:rgba(236,235,232,0.6);
+}
+/* Make the link nearly invisible until hover */
+.hidden-link {
+  color: rgba(236,235,232,0.05);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.hidden-link:hover {
+  color: #a8b0b8;
+  text-decoration: underline;
+}
